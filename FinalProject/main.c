@@ -25,12 +25,6 @@ int currentTurn = 0;
 //   Function Prototypes
 char xo[3][3];
 
-void display_cursor(int x, int y){
-	// done
-	Nokia5110_PrintBMP(y*28+3, (x+1)*14-1, cursor, 0);
-	Nokia5110_DisplayBuffer();
-}
-
 void end_game(char ch)
 {
 	// done by outstring
@@ -88,22 +82,6 @@ int check_winner(){
 			return 0;
 }
 
-void printGrid(void){
-	Nokia5110_ClearBuffer();
-	Nokia5110_DisplayBuffer();      // draw buffer		
-	Nokia5110_PrintBMP(0, gridh - 1, grid, 0);
-	Nokia5110_DisplayBuffer();
-	for(i = 0; i < 3; i++){
-		for(j = 0; j < 3; j++){
-			if(xo[i][j]=='O')
-				Nokia5110_PrintBMP(j*30+5, (i+1)*15-1, O, 0);
-			else if(xo[i][j]=='X')
-				Nokia5110_PrintBMP(j*30+5, (i+1)*15-1, X, 0);
-			Nokia5110_DisplayBuffer();      
-		}
-	}
-}
-
 void GPIOPortF_Handler(void){
 	if(GPIO_PORTF_RIS_R & (1 << 4)){
 		GPIO_PORTF_ICR_R = (1 << 4);      // acknowledge flag4
@@ -132,16 +110,4 @@ int main(void){
   Gpio_init(&portBCfg, GPIO_PORT_B);
   while(1){
   }
-}
-
-void Delay(void){
-	time = 0;
-	Gptm_Init(&Timer0_Config, GPTM_TIMER_0, 5);
-	while(!time){
-	}
-}
-
-void Timer0A_Handler(){
-	TIMER0_ICR_R = 0x00000001;
-	time = 1;
 }
