@@ -11,7 +11,7 @@ This project implements the classic Tic Tac Toe game on the TM4C123 microcontrol
 ## Hardware Requirements
 - Tiva C TM4C123 Microcontoller
 - Nokia 5110 Display
-- 3 Push Buttons
+- Push Buttons
 - Male - Female Jumbers
 - Breadboard
 - Resisors
