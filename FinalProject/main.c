@@ -13,6 +13,75 @@ void Timer0A_Handler(void);
 void EnableInterrupts(void);
 void WaitForInterrupt(void);
 
+#define ow     ((unsigned char)O[18])
+#define oh     ((unsigned char)O[22])
+#define gridw     ((unsigned char)grid[18])
+#define gridh     ((unsigned char)grid[22])
+
+
+unsigned long right, down , enter;
+int i = 0, j = 0, x = 0 , y = 0, time = 0;
+int currentTurn = 0;
+//   Function Prototypes
+char xo[3][3];
+
+void end_game(char ch)
+{
+	// done by outstring
+	Nokia5110_Clear();
+	if(currentTurn)
+		Nokia5110_PrintBMP(0, gridh-1, xwon, 0);
+	else
+		Nokia5110_PrintBMP(0, gridh-1, owon, 0);
+	Nokia5110_DisplayBuffer();
+	Delay();
+}
+int draw(){
+		for(i=0;i<3;++i)
+			for(j=0;j<3;j++)
+				if(xo[i][j]==' ') return 0;
+		return 1;
+}
+
+void end_game_draw()
+{
+		// done
+	Nokia5110_Clear();
+	Nokia5110_PrintBMP(0, gridh-1, drawbg, 0);
+	Nokia5110_DisplayBuffer();
+	Delay();
+}
+
+void xo_init(){
+		// initializing the grid
+		for(i=0;i<3;++i)
+			for(j=0;j<3;j++)
+				xo[i][j]=' ';
+}
+int check_winner(){
+			
+			// check horiziontal
+			if(xo[0][0] == xo[0][1] && xo[0][2] == xo[0][1] && xo[0][0]!= ' ')
+				return 1;
+			if(xo[1][0] == xo[1][1] && xo[1][2] == xo[1][1] && xo[1][0]!= ' ')
+				return 1;
+			if(xo[2][0] == xo[2][1] && xo[2][2] == xo[2][1] && xo[2][0]!= ' ')
+				return 1;
+			// check vertical
+			if(xo[2][0] == xo[1][0] && xo[1][0] == xo[0][0] && xo[2][0]!= ' ')
+				return 1;
+			if(xo[1][1] == xo[0][1] && xo[2][1] == xo[0][1] && xo[0][1]!= ' ')
+				return 1;
+			if(xo[2][2] == xo[1][2] && xo[0][2] == xo[1][2] && xo[1][2]!= ' ')
+				return 1;
+			// digonals
+			if(xo[0][0]==xo[1][1]&&xo[2][2]==xo[0][0]&&xo[0][0]!=' ')
+				return 1;
+			if(xo[0][2]==xo[1][1]&&xo[2][0]==xo[0][2]&&xo[1][1]!=' ')
+				return 1;
+			return 0;
+}
+
 void GPIOPortF_Handler(void){
 	if(GPIO_PORTF_RIS_R & (1 << 4)){
 		GPIO_PORTF_ICR_R = (1 << 4);      // acknowledge flag4
