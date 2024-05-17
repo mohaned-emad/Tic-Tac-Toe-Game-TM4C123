@@ -1,5 +1,5 @@
 #include "Gpio.h"
-#include "..//tm4c123gh6pm11.h"
+#include "../DataSheets/tm4c123gh6pm11.h"
 
 Gpio_Ret_t Gpio_init(Gpio_config_t *config, Gpio_port_t portNum){
 	volatile int delay;

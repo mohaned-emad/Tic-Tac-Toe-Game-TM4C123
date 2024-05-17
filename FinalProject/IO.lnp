@@ -3,7 +3,6 @@
 ".\startup.o"
 ".\gpio.o"
 ".\gpio_cfg.o"
-".\mm.o"
 ".\nokia5110.o"
 ".\gptm.o"
 ".\gptm_cfg.o"

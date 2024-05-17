@@ -441,11 +441,6 @@
               <FilePath>..\TM4C123GH6PM.h</FilePath>
             </File>
             <File>
-              <FileName>mm.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\mm.c</FilePath>
-            </File>
-            <File>
               <FileName>Nokia5110.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\Nokia5110.c</FilePath>

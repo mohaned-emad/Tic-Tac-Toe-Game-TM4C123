@@ -94,12 +94,12 @@ typedef struct Gpio_config_s{
 
 Gpio_Ret_t Gpio_init(Gpio_config_t *config, Gpio_port_t portNum);
 
-Gpio_Ret_t Gpio_setDirection(Gpio_port_t port, Gpio_pin_t pin, Gpio_direction_t direction);
-
-Gpio_Ret_t Gpio_DigitalAnalogSelector(Gpio_port_t port, Gpio_pin_t pin, Gpio_DigitalAnalog_t digitalAnalogSelector);
-
-extern Gpio_config_t portFCfg;
+extern Gpio_config_t portACfg;
 extern Gpio_config_t portBCfg;
+extern Gpio_config_t portCCfg;
+extern Gpio_config_t portDCfg;
+extern Gpio_config_t portECfg;
+extern Gpio_config_t portFCfg;
 
 void EnableInterrupts(void);
 

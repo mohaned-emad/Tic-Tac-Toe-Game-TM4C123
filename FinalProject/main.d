@@ -6,5 +6,5 @@
 .\main.o: Gpio_cfg.h
 .\main.o: Gptm.h
 .\main.o: Gptm_cfg.h
-.\main.o: ..//tm4c123gh6pm11.h
+.\main.o: ../DataSheets/tm4c123gh6pm11.h
 .\main.o: GameArt.h

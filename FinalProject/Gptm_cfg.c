@@ -5,6 +5,6 @@ Gptm_Config_t Timer0_Config = {
     .Mode = GPTM_MODE_ONESHOT,
     .Control = GPTM_CONTROL_ENABLE,
     .Configuration = GPTM_CONFIGURATION_32_BIT,
-    .Direction = GPTM_DIRECTION_UP,
+    .Direction = GPTM_DIRECTION_DOWN,
   },
 };

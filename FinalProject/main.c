@@ -1,9 +1,10 @@
+// 1. Include Necessary headers
 #include "TExaS.h"
 #include "Nokia5110.h"
 #include "Random.h"
 #include "Gpio.h"
 #include "Gptm.h"
-#include "..//tm4c123gh6pm11.h"
+#include "../DataSheets/tm4c123gh6pm11.h"
 #include "GameArt.h"
 
 // 2. Declarations Section
@@ -13,18 +14,20 @@ void Timer0A_Handler(void);
 void EnableInterrupts(void);
 void WaitForInterrupt(void);
 
-#define ow     ((unsigned char)O[18])
-#define oh     ((unsigned char)O[22])
+// *************************** Capture image dimensions out of BMP**********
+#define ow     		((unsigned char)O[18])
+#define oh     		((unsigned char)O[22])
 #define gridw     ((unsigned char)grid[18])
 #define gridh     ((unsigned char)grid[22])
 
-
+// global variables
 unsigned long right, down , enter;
 int i = 0, j = 0, x = 0 , y = 0, time = 0;
 int currentTurn = 0;
-//   Function Prototypes
 char xo[3][3];
 
+
+//   Function Prototypes
 void display_cursor(int x, int y){
 	// done
 	Nokia5110_PrintBMP(y*28+3, (x+1)*14-1, cursor, 0);
@@ -45,10 +48,10 @@ void end_game(char ch)
 int draw(){
 		for(i=0;i<3;++i)
 			for(j=0;j<3;j++)
-				if(xo[i][j]==' ') return 0;
+				if(xo[i][j]==' ') 
+					return 0;
 		return 1;
 }
-
 void end_game_draw()
 {
 		// done
@@ -57,7 +60,6 @@ void end_game_draw()
 	Nokia5110_DisplayBuffer();
 	Delay();
 }
-
 void xo_init(){
 		// initializing the grid
 		for(i=0;i<3;++i)
@@ -106,13 +108,13 @@ void printGrid(void){
 
 void GPIOPortF_Handler(void){
 	if(GPIO_PORTF_RIS_R & (1 << 4)){
-		GPIO_PORTF_ICR_R = (1 << 4);      // acknowledge flag4
+		GPIO_PORTF_ICR_R = (1 << 4);      // acknowledge flag for PF4
 		right = 1;
 		GPIO_PORTF_DATA_R = 0x02;
 	}
 	
 	if(GPIO_PORTF_RIS_R & (1 << 0)){
-		GPIO_PORTF_ICR_R = (1 << 0);      // acknowledge flag0
+		GPIO_PORTF_ICR_R = (1 << 0);      // acknowledge flag for PF0
 		enter = 1;
 		GPIO_PORTF_DATA_R = 0x04;
 	}	
@@ -120,18 +122,22 @@ void GPIOPortF_Handler(void){
 
 void GPIOPortB_Handler(void){
 	if(GPIO_PORTB_RIS_R & (1 << 0)){
-		GPIO_PORTB_ICR_R = (1 << 0);      // acknowledge flag7
+		GPIO_PORTB_ICR_R = (1 << 0);      // acknowledge flag for PB0
 		down = 1;
 		GPIO_PORTB_DATA_R = 0x06;
 	}
 }
+
+// 3. Subroutines Section
+// MAIN: Mandatory for a C Program to be executable
+
 int main(void){    
   TExaS_Init(SW_PIN_PF40,LED_PIN_PF321); 
-  Nokia5110_Init();	
-  Gpio_init(&portFCfg, GPIO_PORT_F);
-  Gpio_init(&portBCfg, GPIO_PORT_B);
-  while(1){
-	x=y=currentTurn=0;
+	Nokia5110_Init();	
+	Gpio_init(&portFCfg, GPIO_PORT_F);
+	Gpio_init(&portBCfg, GPIO_PORT_B);
+	while(1){
+		x=y=currentTurn=0;
 		xo_init();
 		Nokia5110_PrintBMP(0, gridh - 1, introbg, 0);
 		Nokia5110_DisplayBuffer(); 
@@ -155,9 +161,10 @@ int main(void){
 			if(enter){
 				edit=1;
 				if(xo[x][y] == ' '){
-					if(currentTurn)	xo[x][y]= 'X';
-					else						xo[x][y]= 'O';
-					//print(x,y,xo[x][y]);
+					if(currentTurn)	
+						xo[x][y]= 'X';
+					else						
+						xo[x][y]= 'O';
 					if(check_winner()){
 						end_game(xo[x][y]);
 						break;
@@ -171,15 +178,15 @@ int main(void){
 				else{
 					// zamr nawr a3ml ally t7bo
 			}			
-		} 
-//////////////////////////////////////////	
+		} 	
 			if(edit){
 			printGrid();
 			display_cursor(x,y);
 			}	
 		}
-  }
+	}
 }
+
 
 void Delay(void){
 	time = 0;
