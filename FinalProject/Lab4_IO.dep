@@ -1,0 +1,33 @@
+Dependencies for Project 'Lab4', Target 'IO': (DO NOT MODIFY !)
+F (.\main.c)(0x6645DE13)(--c99 -c --cpu Cortex-M4 -D__EVAL -g -O0 --apcs=interwork --split_sections --signed_chars -I.. -I..\..\..-I C:\Keil\ARM\RV31\INC-I C:\Keil\ARM\CMSIS\Include-I C:\Keil\ARM\Inc\Luminary-Drvmdk -DPART_LM4F120H5QR-o .\main.o --omf_browse .\main.crf --depend .\main.d)
+I (TExaS.h)(0x56994EF4)
+I (Nokia5110.h)(0x53440D5E)
+I (Random.h)(0x54A1258A)
+I (Gpio.h)(0x663D2841)
+I (Gpio_cfg.h)(0x663AF50C)
+I (Gptm.h)(0x6645D9BA)
+I (Gptm_cfg.h)(0x6645D9B6)
+I (..//tm4c123gh6pm11.h)(0x51D44682)
+I (GameArt.h)(0x663D25AB)
+F (.\startup.s)(0x529A036C)(--cpu Cortex-M4 --pd "__EVAL SETA 1" -g --apcs=interwork -I C:\Keil\ARM\RV31\INC-I C:\Keil\ARM\CMSIS\Include-I C:\Keil\ARM\Inc\Luminary--list .\startup.lst --xref -o .\startup.o --depend .\startup.d)
+F (.\Gpio.c)(0x6645D8EB)(--c99 -c --cpu Cortex-M4 -D__EVAL -g -O0 --apcs=interwork --split_sections --signed_chars -I.. -I..\..\..-I C:\Keil\ARM\RV31\INC-I C:\Keil\ARM\CMSIS\Include-I C:\Keil\ARM\Inc\Luminary-Drvmdk -DPART_LM4F120H5QR-o .\gpio.o --omf_browse .\gpio.crf --depend .\gpio.d)
+I (Gpio.h)(0x663D2841)
+I (Gpio_cfg.h)(0x663AF50C)
+I (..//tm4c123gh6pm11.h)(0x51D44682)
+F (.\Gpio_cfg.c)(0x663D27FB)(--c99 -c --cpu Cortex-M4 -D__EVAL -g -O0 --apcs=interwork --split_sections --signed_chars -I.. -I..\..\..-I C:\Keil\ARM\RV31\INC-I C:\Keil\ARM\CMSIS\Include-I C:\Keil\ARM\Inc\Luminary-Drvmdk -DPART_LM4F120H5QR-o .\gpio_cfg.o --omf_browse .\gpio_cfg.crf --depend .\gpio_cfg.d)
+I (Gpio.h)(0x663D2841)
+I (Gpio_cfg.h)(0x663AF50C)
+F (..\system_TM4C123.h)(0x532C5688)()
+F (..\TM4C123.h)(0x532C5688)()
+F (..\TM4C123GH6PM.h)(0x532C5688)()
+F (.\mm.c)(0x663B7BAE)(--c99 -c --cpu Cortex-M4 -D__EVAL -g -O0 --apcs=interwork --split_sections --signed_chars -I.. -I..\..\..-I C:\Keil\ARM\RV31\INC-I C:\Keil\ARM\CMSIS\Include-I C:\Keil\ARM\Inc\Luminary-Drvmdk -DPART_LM4F120H5QR-o .\mm.o --omf_browse .\mm.crf --depend .\mm.d)
+F (.\Nokia5110.c)(0x53440D5E)(--c99 -c --cpu Cortex-M4 -D__EVAL -g -O0 --apcs=interwork --split_sections --signed_chars -I.. -I..\..\..-I C:\Keil\ARM\RV31\INC-I C:\Keil\ARM\CMSIS\Include-I C:\Keil\ARM\Inc\Luminary-Drvmdk -DPART_LM4F120H5QR-o .\nokia5110.o --omf_browse .\nokia5110.crf --depend .\nokia5110.d)
+I (Nokia5110.h)(0x53440D5E)
+F (.\Gptm.c)(0x6645D9BB)(--c99 -c --cpu Cortex-M4 -D__EVAL -g -O0 --apcs=interwork --split_sections --signed_chars -I.. -I..\..\..-I C:\Keil\ARM\RV31\INC-I C:\Keil\ARM\CMSIS\Include-I C:\Keil\ARM\Inc\Luminary-Drvmdk -DPART_LM4F120H5QR-o .\gptm.o --omf_browse .\gptm.crf --depend .\gptm.d)
+I (Gptm.h)(0x6645D9BA)
+I (Gptm_cfg.h)(0x6645D9B6)
+I (..//tm4c123gh6pm11.h)(0x51D44682)
+F (.\Gptm_cfg.c)(0x6645D9B9)(--c99 -c --cpu Cortex-M4 -D__EVAL -g -O0 --apcs=interwork --split_sections --signed_chars -I.. -I..\..\..-I C:\Keil\ARM\RV31\INC-I C:\Keil\ARM\CMSIS\Include-I C:\Keil\ARM\Inc\Luminary-Drvmdk -DPART_LM4F120H5QR-o .\gptm_cfg.o --omf_browse .\gptm_cfg.crf --depend .\gptm_cfg.d)
+I (Gptm.h)(0x6645D9BA)
+I (Gptm_cfg.h)(0x6645D9B6)
+F (.\texas.o)(0x56994D98)()

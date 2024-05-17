@@ -1,0 +1,10 @@
+.\main.o: main.c
+.\main.o: TExaS.h
+.\main.o: Nokia5110.h
+.\main.o: Random.h
+.\main.o: Gpio.h
+.\main.o: Gpio_cfg.h
+.\main.o: Gptm.h
+.\main.o: Gptm_cfg.h
+.\main.o: ..//tm4c123gh6pm11.h
+.\main.o: GameArt.h
