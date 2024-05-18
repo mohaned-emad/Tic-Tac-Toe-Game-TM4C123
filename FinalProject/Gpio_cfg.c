@@ -68,3 +68,23 @@ Gpio_config_t portBCfg = {
 		},
 	},	
 };
+
+Gpio_config_t portECfg = {
+	.portsCfgs[GPIO_PORT_E] = {
+		.portEnable = GPIO_PORT_ENABLE,
+		.pinsCfgs[GPIO_PIN_4] = {
+			.digitalAnalogSelector = GPIO_MODE_DIGITAL,
+			.pinDirection = GPIO_DIRECTION_OUTPUT,
+			.pullUp = GPIO_DISABLE,
+			.pullDown = GPIO_DISABLE,
+			.alternateFunction = GPIO_DISABLE,
+		},
+		.pinsCfgs[GPIO_PIN_5] = {
+			.digitalAnalogSelector = GPIO_MODE_DIGITAL,
+			.pinDirection = GPIO_DIRECTION_OUTPUT,
+			.pullUp = GPIO_DISABLE,
+			.pullDown = GPIO_DISABLE,
+			.alternateFunction = GPIO_DISABLE,
+		},
+	},
+};

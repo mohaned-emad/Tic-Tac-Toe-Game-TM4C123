@@ -228,7 +228,57 @@ Gpio_Ret_t Gpio_init(Gpio_config_t *config, Gpio_port_t portNum){
 					NVIC_EN0_R = 1 << 2;
 					EnableInterrupts();
         }
-        break;		
+        break;
+		
+		case GPIO_PORT_E:
+        SYSCTL_RCGC2_R |= (1 << portNum);
+        GPIO_PORTE_LOCK_R = 0x4C4F434B;
+        delay = SYSCTL_RCGC2_R;
+        flag = 0;
+        for (pinNum = 0; pinNum < PIN_MAX_NUM; pinNum++)
+        {	
+						if(pinNum > 4){
+							break;
+						}
+            // set commit register
+            GPIO_PORTE_CR_R |= (1 << pinNum);
+            // Set pin direction
+            if(config->portsCfgs[portNum].pinsCfgs[pinNum].pinDirection == GPIO_DIRECTION_INPUT){
+                GPIO_PORTE_DIR_R &= ~(1 << pinNum);
+            }
+            else{
+                GPIO_PORTE_DIR_R |= (1 << pinNum);
+            }
+            // set alternate function
+            if (config->portsCfgs[portNum].pinsCfgs[pinNum].alternateFunction == GPIO_ENABLE)
+            {
+                GPIO_PORTE_AFSEL_R |= (1 << pinNum);
+								GPIO_PORTE_PCTL_R |= (0xf << 4 * pinNum);
+            }
+            else{
+                GPIO_PORTE_AFSEL_R &= ~(1 << pinNum);
+								GPIO_PORTE_PCTL_R &= ~(0xf << 4 * pinNum);
+            }
+            // set digital or analog functionality
+            if(config->portsCfgs[portNum].pinsCfgs[pinNum].digitalAnalogSelector == GPIO_MODE_DIGITAL){
+                GPIO_PORTE_DEN_R |= (1 << pinNum);
+                GPIO_PORTE_AMSEL_R &= ~(1 << pinNum);
+            }
+            else {
+                GPIO_PORTE_DEN_R &= ~(1 << pinNum);
+                GPIO_PORTE_AMSEL_R |= (1 << pinNum);
+            }
+
+            // set pollup resistor
+            if (config->portsCfgs[portNum].pinsCfgs[pinNum].pullUp == GPIO_ENABLE){
+                GPIO_PORTE_PUR_R |= (1 << pinNum);
+            }
+            else{
+                GPIO_PORTE_PUR_R &= ~(1 << pinNum);
+            }
+					}
+        break;
+				
     case GPIO_PORT_F:
         SYSCTL_RCGC2_R |= (1 << portNum);
         GPIO_PORTF_LOCK_R = 0x4C4F434B;
@@ -312,3 +362,12 @@ Gpio_Ret_t Gpio_init(Gpio_config_t *config, Gpio_port_t portNum){
     }
 		return GPIO_RET_OK;
 }
+
+void LED_ON(Gpio_pin_t pinNum){
+	GPIO_PORTE_DATA_R = (1 << pinNum);
+}
+void LED_OFF(Gpio_pin_t pinNum){
+	GPIO_PORTE_DATA_R = (0 << pinNum);
+}
+
+

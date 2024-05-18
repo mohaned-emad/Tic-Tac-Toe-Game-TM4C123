@@ -38,10 +38,14 @@ void end_game(char ch)
 {
 	// done by outstring
 	Nokia5110_Clear();
-	if(currentTurn)
+	if(currentTurn){
 		Nokia5110_PrintBMP(0, gridh-1, xwon, 0);
-	else
+		LED_ON(GPIO_PIN_4);
+	}
+	else{
 		Nokia5110_PrintBMP(0, gridh-1, owon, 0);
+		LED_ON(GPIO_PIN_5);
+	}
 	Nokia5110_DisplayBuffer();
 	Delay();
 }
@@ -136,6 +140,7 @@ int main(void){
 	Nokia5110_Init();	
 	Gpio_init(&portFCfg, GPIO_PORT_F);
 	Gpio_init(&portBCfg, GPIO_PORT_B);
+	Gpio_init(&portECfg, GPIO_PORT_E);
 	while(1){
 		x=y=currentTurn=0;
 		xo_init();
@@ -144,6 +149,8 @@ int main(void){
 		Delay();
 		printGrid();
 		display_cursor(x,y);
+		LED_OFF(GPIO_PIN_4);
+		LED_OFF(GPIO_PIN_5);
 		while(1){
 			right = down = enter = 0;
 			WaitForInterrupt();

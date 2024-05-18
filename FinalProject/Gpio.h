@@ -103,4 +103,7 @@ extern Gpio_config_t portFCfg;
 
 void EnableInterrupts(void);
 
+void LED_ON(Gpio_pin_t pinNum);
+void LED_OFF(Gpio_pin_t pinNum);
+
 #endif
